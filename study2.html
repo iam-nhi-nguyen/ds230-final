@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<!--head-->
+<head>
+
+<!--title-->
+<title>Skincare Data</title>
+<!--style sheet-->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<!--body-->
+<body>
+
+<!--container-->
+<div id="container">
+
+<!--navbar-->
+<nav id="navbar">
+
+<!--header-->
+<header>
+<h1>Skincare Data</h1>
+</header>
+
+<!--pages-->
+<a class="navpage" href="index.html">Introduction</a>
+<a class="navpage" href="data.html">Data</a>
+<a class="navpage" href="study1.html">Case Study 1</a>
+<a class="navpage current" href="study2.html">Case Study 2</a>
+<a class="navpage" href="study3.html">Case Study 3</a>
+<a class="navpage" href="study4.html">Case Study 4</a>
+<a class="navpage" href="conclusion.html">Conclusion</a>
+<a class="navpage" href="about.html">About</a>
+
+</nav>
+
+<!--main-->
+<main>
+<header>
+<h2>Case Study 2: Does Clean at Sephora seal makes a difference to means of logLove?</h2>
+</header>
+
+<section class="main-section first-section">
+<header>
+<h3>Box Plot</h3>
+</header>
+
+<p>
+Clean at Sephora seal was introduced in part to encourage customers to
+shop clean products. We can perform a two sample t-test on logLove by
+whether or not the product has Clean at Sephora seal to see if this seal
+makes a statistically significant difference in means of log number of
+people recommending a product.
+</p>
+
+<p>
+First, we want to take a loot at the boxplot of logLove by Clean variable.    
+</p>
+
+<p><img src="boxplot.png"></p>
+
+<p>
+Visually, in terms of means, medians, quantiles, and range, there are
+clear differences for the logLove between products that has Clean at
+Sephora seal and those that do not have the seal.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>T-Test</h3>
+</header>
+
+<p>We can use a two sample t-test to check wheather these differences are significant.</p>
+
+<pre class="r"><code>(test1 &lt;- t.test(logLove ~ Clean, conf = 0.99))</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  logLove by Clean
+## t = -5.3968, df = 1487.3, p-value = 7.885e-08
+## alternative hypothesis: true difference in means is not equal to 0
+## 99 percent confidence interval:
+##  -0.5068589 -0.1790579
+## sample estimates:
+## mean in group FALSE  mean in group TRUE 
+##            8.719067            9.062025</code></pre>
+
+<p>
+The p-value for the t-test is extremely small, and the 99% confidence
+interval (-0.51 -0.18) doesn’t include 0. Thus, we are 99% confidence
+that there is a difference between means of logLove with and without
+Clean at Sephora seal.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>Bootstrap</h3>
+</header>
+
+<p>
+To be even more certain, we will now create a bootstrap interval for
+this t-test and compare the result with the theoretical interval.
+</p>
+
+<p><img src="study2bootstrap.png"></p>
+
+<p>
+The bootstrap interval is basically the same as the theoretical interval.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>Permutation Test</h3>
+</header>
+
+<p>
+We want to see how likely it is that the observed difference is due
+to random chance, using permutation test.
+</p>
+
+<img src="permutation.png">
+
+<p>
+The actual difference in means of logLove is smaller than any of
+the difference of logLove generated from a fake sample. This suggests
+a 0 p-value, which is an extremely strong evidence that the observed
+difference is due to random chance.
+</p>
+
+</section>
+
+<section class="main-section">
+<header>
+<h3>Conclusion</h3>
+</header>
+
+<p>
+These results suggest that there is a strong evidence that there is
+a difference between the means of log of the number of customers
+recommending products (logLove) with and without Clean at Sephora seal.
+</p>
+</section>
+</main>
+
+</div>
+</body>
+
+</html>

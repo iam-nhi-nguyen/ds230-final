@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<!--head-->
+<head>
+
+<!--title-->
+<title>Skincare Data</title>
+<!--style sheet-->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<!--body-->
+<body>
+
+<!--container-->
+<div id="container">
+
+<!--navbar-->
+<nav id="navbar">
+
+<!--header-->
+<header>
+<h1>Skincare Data</h1>
+</header>
+
+<!--pages-->
+<a class="navpage" href="index.html">Introduction</a>
+<a class="navpage" href="data.html">Data</a>
+<a class="navpage current" href="#">Case Study 1</a>
+<a class="navpage" href="study2.html">Case Study 2</a>
+<a class="navpage" href="study3.html">Case Study 3</a>
+<a class="navpage" href="study4.html">Case Study 4</a>
+<a class="navpage" href="conclusion.html">Conclusion</a>
+<a class="navpage" href="about.html">About</a>
+
+</nav>
+
+<!--main-->
+<main>
+<header>
+<h2>Case Study 1: Continuous variables that are correlated with logLove?</h2>
+</header>
+
+<section class="main-section first-section">
+<header>
+<h3>Correlation</h3>
+</header>
+
+<p>
+We want to see which variables can be best used to predict number
+of people recommending a product (or Love), so we can start by
+finding the correlation of logLove with each of the other two
+continous variables.
+</p>
+
+<pre class="r"><code>cor(cosmetic2[,1:3])[1,2:3]</code></pre>
+
+<pre><code>## logReview    logPPO
+## 0.87466947   -0.06725834</code></pre>
+
+<p>
+As we can see, logReview has a relatively close to 1 positive
+correlation with logLove, whereas logPPO has a relatively close to
+0 negative correlation with logLove. So, we can focus on identifying
+whether the correlation between logLove and logReview is significant.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>Scatter Plot</h3>
+</header>
+
+<p>
+First, let take a look at the scatter plot between these logLove and logReview.
+</p>
+
+<p><img src="scatterplot.png"></p>
+
+<p>
+Visually, there appears to be a strong correlation between logLove and
+logReview. However, the true values of logLove seems to have quite a
+variance from the trendline.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>Correlation Test</h3>
+</header>
+
+<p>
+Now, we will perform a correlation test to see the likelihood that there
+is a non zero true correlation between these two variables.
+</p>
+
+<pre class="r"><code>(cor1test &lt;- cor.test(logLove, logReview, conf.level = .99))</code></pre>
+
+<pre><code>## 
+##  Pearson's product-moment correlation
+## 
+## data:  logLove and logReview
+## t = 81.402, df = 2035, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 99 percent confidence interval:
+##  0.8605609 0.8874369
+## sample estimates:
+##       cor 
+## 0.8746695</code></pre>
+
+<p>
+The extremely small p-value suggests that there is a non-zero
+true correlation between these two variables. The 99% confidence
+interval (0.86, 0.89) suggests this correlation is a relatively
+strong positive one.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>Bootstrap</h3>
+</header>
+
+<p>
+To be even more certain, we will now create a bootstrap interval
+for this correlation test and compare the result with the
+theoretical interval.
+</p>
+
+<p><img src="study1bootstrap.png"></p>
+
+<p>
+The bootstrap interval is basically the same as the theoretical interval.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>Conclusion</h3>
+</header>
+
+<p>
+These results suggest that there is a relatively strong correlation
+between the log of number of customers recommending a product and
+the log of number of customers leaving a review (either a good
+review or a bad review).
+</p>
+</section>
+</main>
+
+</div> <!--/container-->
+
+</body>
+
+</html>

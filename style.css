@@ -1,0 +1,163 @@
+/*body*/
+body {
+font-family: "Trebuchet MS", sans-serif;
+font-size: 14px;
+padding: 0;
+margin: 0;
+}
+
+/*container*/
+#container{
+display: flex;
+width: 100%;
+min-height: 620px;
+}
+
+/*navbar*/
+#navbar{
+height: 100%;
+width: 200px;
+position: fixed;
+display: flex;
+flex-direction: column;
+background-color: #222d32;
+}
+
+#navbar header h1{
+padding: 14px;
+margin-top: 0;
+margin-bottom: 0;
+font-weight: 400;
+font-size: 20px;
+color: white;
+background-color: #555299;
+text-align: center;
+}
+
+a.navpage{
+padding: 12px 28px;
+color: #b7c5c8;
+text-decoration: none;
+font-weight: 600;
+font-size: 14px;
+border-left: 3px solid #222d32;
+}
+
+a.current, #navbar a:hover{
+background-color: #1e282c;
+color: white;
+border-left: 3px solid #555299;
+}
+
+a{
+text-decoration: none;
+color: #555299;
+font-weight: 600;
+}
+
+/*main*/
+main{
+padding: 0 30px 20px;
+background-color: #ecf0f5;
+flex-basis: 100%;
+margin-left: 200px;
+}
+
+.main-section{
+flex: 1;
+padding-bottom: 20px;
+border-bottom: 1px solid #555299;
+}
+
+.first-section{
+border-top: 1px solid #555299;
+}
+
+.only-section{
+border: none;
+}
+
+h3, p{
+color: #222d32;
+}
+
+h2{
+font-size: 32px;
+font-weight: 400;
+color: #555299;
+}
+
+h3{
+font-size: 30px;
+font-weight: 600;
+}
+
+p, li{
+line-height: 1.5em;
+}
+
+h2, h3, p, li, pre{
+padding-left: 14px;
+padding-right: 14px;
+}
+
+img, h2, h3, p, li, pre{
+width: 100%;
+height: auto;
+max-width: 650px;
+}
+
+/* CODE */
+
+pre, code {
+  font-family: 'Consolas', 'Courier New', Courier, monospace;
+}
+
+pre + pre {
+  margin-top: -1em;
+}
+
+pre.r + pre {
+  margin-top: 0;
+}
+
+code {
+  border-radius: 3px; 
+  color: #555299;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+
+pre {
+    overflow-x: auto;
+    padding: 2px 2px;
+    line-height: 20px;
+    margin: 0.5em 0 1em 1em;
+    background-color: white;
+    padding: 4px 4px;
+}
+
+pre code {
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    padding: initial;
+}
+  
+pre.r code {
+    color: #b7c5c8;
+}
+
+@media (max-width: 650px){
+    #container{
+    flex-direction: column;
+    }
+
+    #navbar{
+    position: relative;
+    width: 100%;
+    }
+
+    main{
+    flex: 1;
+    margin: 0;
+    }
+}

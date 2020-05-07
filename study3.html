@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<!--head-->
+<head>
+
+<!--title-->
+<title>Skincare Data</title>
+<!--style sheet-->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<!--body-->
+<body>
+
+<!--container-->
+<div id="container">
+
+<!--navbar-->
+<nav id="navbar">
+
+<!--header-->
+<header>
+<h1>Skincare Data</h1>
+</header>
+
+<!--pages-->
+<a class="navpage" href="index.html">Introduction</a>
+<a class="navpage" href="data.html">Data</a>
+<a class="navpage" href="study1.html">Case Study 1</a>
+<a class="navpage" href="study2.html">Case Study 2</a>
+<a class="navpage current" href="#">Case Study 3</a>
+<a class="navpage" href="study4.html">Case Study 4</a>
+<a class="navpage" href="conclusion.html">Conclusion</a>
+<a class="navpage" href="#about.html">About</a>
+
+</nav>
+
+<main>
+<header>
+<h2>Case Study 3: Are there differences in means of logLove across categories?</h2>
+</header>
+
+<section class="main-section first-section">
+<header>
+<h3>Box Plot</h3>
+</header>
+
+<p>
+We also have a literal Category variable in our dataset. We can take a look
+at a boxplot to observe if different categories of skincare products have
+different log number of people recommending the product.
+</p>
+
+<p><img src="study3boxplot.png"></p>
+
+<p>
+Visually, there are significant differences in logLove across categories.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>ANOVA Test</h3>
+</header>
+
+<p>In order to test whether these differences are significant, we will use ANOVA test.</p>
+
+<pre class="r"><code>summary(aov(logLove ~ Category))</code></pre>
+
+<pre><code>##               Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## Category       9    246   27.29   15.51 &lt;2e-16 ***
+## Residuals   2027   3567    1.76                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+
+<p>
+The extremely small p-value suggests that the probability the observed differences
+in logLove across Categories are random is really low.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>Tukey Interval</h3>
+</header>
+
+<p>
+We will plot the Tukey simultaneous 95% confidence intervals for differences in mean
+logLove to visualize these significant differences.
+</p>
+
+<p><img src="tukey.png"></p>
+
+<p>
+Many of the intervals do not include 0, which means there is a significant difference
+between means of logLove in different categories.
+</p>
+</section>
+
+<section class="main-section">
+<header>
+<h3>Residual Plots</h3>
+</header>
+
+<p>
+We also want to take a look at the residual plots for the ANOVA model that we
+just created to see if the model's assumptions are met.
+</p>
+
+<img src="study3residual.png">
+
+<p>
+The linear normal quantile suggests that the distribution of logLove is
+normal inside each category, which means the assumption for ANOVA model is met.
+</p>
+
+</section>
+
+<section class="main-section">
+<header>
+<h3>Conclusion</h3>
+</header>
+
+<p>
+Thus, we can conclude that there is a significant difference in log of the
+number of customers recommending products (logLove) by Category.
+</p>
+</section>
+</main>
+
+</div>
+</body>
+
+</html>
